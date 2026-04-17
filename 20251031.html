@@ -341,11 +341,14 @@
                     data = result;
                 }
 
-                if (data && data.success && data.data) {
-                    displayResult(data.data);
+                if (data && data.english) {
+                    displayResult({
+                        original_text: data.english,
+                        translated_text: data.chinese
+                    });
                     updateStatus('✅ 翻譯完成', 'success');
                 } else {
-                    throw new Error(data.error?.message || '翻譯處理失敗');
+                    throw new Error('翻譯處理失敗');
                 }
 
             } catch (error) {
